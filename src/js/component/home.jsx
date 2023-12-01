@@ -42,14 +42,14 @@ const Home = () => {
 
 
 	return (
-		<div className="container d-block justify-content-center bg-dark p-5" style={{width: "30rem"}}>
+		<div className="container d-block justify-content-center bg-black p-5" style={{width: "30rem"}}>
 			<h1 className="text-center text-light p-2">My To-Do List</h1>
 			<input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm p-5" onChange={handleTask} onKeyUp={handleList} placeholder="Add your task for today here :)"></input>
 			<ul className="text-light p-3">
 				{list.map((item, index) => (
-         			 <li key={index} style={{listStyleType: "none"}}>
+         			 <li key={index} style={{listStyleType: "none"}} className="bg-dark p-2">
             		{item}
-					<span onClick={() => {setList(list.filter((_, i) => i !== index))}}>X</span>
+					<span onClick={() => {setList(list.filter((_, i) => i !== index))}} className="d-flex justify-content-end"> x</span>
           			</li>
        				 ))}
 			</ul>
