@@ -44,15 +44,15 @@ const Home = () => {
 
 
 	return (
-		<div className="container d-block bg-black p-5 col-lg-6 col-md-4 col-sm-10 mt-5 pb-3" style={{width: "30rem"}}>
+		<div className="container d-block bg-dark p-5 col-lg-6 col-md-4 col-sm-10 mt-5 pb-3" style={{width: "30rem"}}>
 			<h1 className="text-light p-2 d-flex justify-content-center">My To-Do List</h1>
 			<input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm p-5" onChange={handleTask} onKeyUp={handleList} placeholder="Add your task for today here :)"></input>
-			<ul className="text-light p-3">
+			<ul className="text-light pt-3" style={{paddingLeft: "0rem"}}>
 				{list.map((item, index) => (
-         			 <li key={index} style={{listStyleType: "none"}} className="bg-dark p-2 border border-secondary" onMouseEnter={mouseHoverEvent} onMouseLeave={mouseLeaveEvent}>
-            		{item}
-					<span onClick={() => handleRemoveItem(index)} className="justify-content-end text-secondary" style={{display: visible}}> x</span>
-          			</li>
+         			<li key={index} style={{listStyleType: "none"}} className="bg-dark p-2 border border-secondary align-items-center" onMouseEnter={mouseHoverEvent} onMouseLeave={mouseLeaveEvent}>
+            		<span className="justify-content-start">{item}</span>
+					<span onClick={() => handleRemoveItem(index)} className="text-secondary justify-content-end" style={{display: visible}}> x</span>
+					</li>
        				 ))}
 			</ul>
 			<span className="text-light font-italic" style={{fontFamily: "fantasy", fontSize: "small"}}>{count} items left</span>
