@@ -10,10 +10,12 @@ const Home = () => {
 	const [task, setTask] = useState("");
 	const [list, setList] = useState([]);
 	const [visible, setVisibleItem] = useState("none");
+	const [hoverIndex, setHoverIndex] = useState(null);
 	
 
-	function mouseHoverEvent(){
+	function mouseHoverEvent(index){
 			setVisibleItem("flex");    //hace visible la x
+			setHoverIndex(index); // para que solo aparezca la x en el <li> en el que estoy posicionada
 	}
 	
 	function mouseLeaveEvent(){
@@ -49,10 +51,12 @@ const Home = () => {
 			<input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm p-5" onChange={handleTask} onKeyUp={handleList} placeholder="Add your task for today here :)"></input>
 			<ul className="text-light pt-3" style={{ paddingLeft: "0rem", display: "flex", flexDirection: "column", gap: "10px" }}>
  			 	{list.map((item, index) => (
-    				<li key={index} style={{ listStyleType: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }} className="bg-dark p-2 border border-secondary" onMouseEnter={mouseHoverEvent} onMouseLeave={mouseLeaveEvent}>
+    				<li key={index} style={{ listStyleType: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }} className="bg-dark p-2 border border-secondary" onMouseEnter={()=> mouseHoverEvent(index)} onMouseLeave={mouseLeaveEvent}>
       					<span>{item}</span>
-      					<span onClick={() => handleRemoveItem(index)} className="text-secondary" style={{ display: visible }}> x</span>
-    				</li>
+						<div>
+      					<span onClick={() => handleRemoveItem(index)} className="text-secondary" style={{ display: hoverIndex === index ? visible : "none" }}> x</span>
+						</div>
+					</li>
  				 ))}
 			</ul>
 			<span className="text-light font-italic" style={{fontFamily: "fantasy", fontSize: "small"}}>{count} items left</span>
